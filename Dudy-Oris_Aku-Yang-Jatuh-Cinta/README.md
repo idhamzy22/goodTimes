@@ -17,7 +17,7 @@ Proyek ini adalah program Python yang memutar file MP3 sambil menampilkan lirik 
 
 2. Pastikan Anda memiliki file MP3 di jalur yang ditentukan. Pada contoh ini, jalur file MP3 adalah:
     ```plaintext
-    /root/perkuliahan/goodTimes/Dudy-Oris_Aku-Yang-Jatuh-Cinta/ajc.mp3
+    /linux/ubuntu/root/perkuliahan/goodTimes/Dudy-Oris_Aku-Yang-Jatuh-Cinta/ajc.mp3
     ```
    Anda dapat mengganti jalur ini dengan lokasi file MP3 yang Anda miliki.
 
