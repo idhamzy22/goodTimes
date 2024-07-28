@@ -10,15 +10,16 @@ Proyek ini adalah program Python yang memutar file MP3 sambil menampilkan lirik 
 
 ## Instalasi
 
-1. Instal pustaka yang diperlukan:
+1. Instal pustaka yang diperlukan dengan menjalankan perintah berikut di terminal:
     ```bash
     pip install pygame colorama
     ```
 
-2. Pastikan Anda memiliki file MP3 di jalur yang ditentukan:
+2. Pastikan Anda memiliki file MP3 di jalur yang ditentukan. Pada contoh ini, jalur file MP3 adalah:
     ```plaintext
     /root/perkuliahan/goodTimes/Dudy-Oris_Aku-Yang-Jatuh-Cinta/ajc.mp3
     ```
+   Anda dapat mengganti jalur ini dengan lokasi file MP3 yang Anda miliki.
 
 ## Penggunaan
 
@@ -95,25 +96,36 @@ Proyek ini adalah program Python yang memutar file MP3 sambil menampilkan lirik 
     python lirik.py
     ```
 
-## Fungsi
+## Penjelasan Fungsi
 
 1. **print_lirik()**
-    - Fungsi ini menginisialisasi `colorama` dan mendefinisikan warna untuk lirik.
-    - Mendefinisikan baris lirik dan penundaan antara setiap karakter dan setiap baris.
-    - Mengiterasi setiap baris dan mencetaknya karakter demi karakter dengan penundaan dan warna yang ditentukan.
-    - Setelah mencetak setiap baris, menunggu penundaan yang ditentukan sebelum mencetak baris berikutnya.
+    - Fungsi ini bertanggung jawab untuk menampilkan lirik lagu dengan efek warna.
+    - Inisialisasi `colorama` dengan `init(autoreset=True)` untuk otomatis mengatur ulang warna setelah setiap karakter.
+    - Mendefinisikan daftar warna yang akan digunakan untuk setiap baris lirik.
+    - Menyusun lirik lagu dalam bentuk daftar tuple, di mana setiap tuple berisi baris lirik dan penundaan antara setiap karakter.
+    - Daftar `delays` berisi waktu tunggu antar baris.
+    - Loop utama iterasi melalui setiap baris, mengatur warna berdasarkan indeks, dan mencetak setiap karakter dengan penundaan yang ditentukan.
+    - Setelah mencetak satu baris lengkap, program akan menunggu sesuai waktu dalam daftar `delays` sebelum melanjutkan ke baris berikutnya.
+    - `print(Style.RESET_ALL)` mengatur ulang gaya teks ke default setelah setiap baris dicetak.
 
 2. **print_table()**
-    - Fungsi ini mencetak tabel dengan judul menggunakan `colorama` untuk teks berwarna.
-    - Menginisialisasi `colorama` dan mencetak judul yang dibatasi oleh garis tanda sama dengan.
+    - Fungsi ini bertugas untuk mencetak tabel dengan judul yang ditampilkan dalam warna yang berbeda.
+    - Inisialisasi `colorama` dengan `init(autoreset=True)` untuk mengatur ulang warna secara otomatis setelah digunakan.
+    - Judul tabel disimpan dalam variabel `table_title`.
+    - Variabel `border` berisi baris tanda sama dengan yang panjangnya sesuai dengan panjang judul tabel.
+    - Mencetak batas atas, judul dengan warna yang berbeda, dan batas bawah tabel.
 
 3. **Blok Eksekusi Utama**
-    - Memeriksa apakah file MP3 yang ditentukan ada.
-    - Jika file ada, mencetak tabel dan mulai memutar file MP3 menggunakan `pygame`.
-    - Memanggil fungsi `print_lirik()` untuk menampilkan lirik yang sinkron dengan lagu.
-    - Menjaga skrip tetap berjalan hingga file MP3 selesai diputar.
+    - Bagian ini adalah titik masuk utama dari program.
+    - Memeriksa apakah file MP3 yang ditentukan ada di jalur yang ditentukan. Jika tidak, mencetak pesan kesalahan dan keluar dari program.
+    - Jika file ada, mencetak tabel dengan memanggil `print_table()`.
+    - Inisialisasi mixer `pygame` dan memuat file MP3.
+    - Memulai pemutaran musik dengan `pygame.mixer.music.play()`.
+    - Memanggil fungsi `print_lirik()` untuk menampilkan lirik lagu yang sinkron dengan pemutaran musik.
+    - Loop `while pygame.mixer.music.get_busy()` memastikan program tetap berjalan selama musik masih diputar.
 
 ## Catatan
 
-- Pastikan jalur file MP3 sudah benar.
-- Sesuaikan penundaan dan lirik sesuai kebutuhan agar sinkron sempurna dengan lagu.
+- Pastikan jalur file MP3 sudah benar. Jika file MP3 berada di lokasi yang berbeda, ubah variabel `file_path` sesuai dengan jalur yang benar.
+- Anda mungkin perlu menyesuaikan nilai penundaan dalam daftar `lines` dan `delays` agar lirik lebih sinkron dengan musik yang diputar.
+- Program ini akan mencetak pesan kesalahan dan keluar jika file MP3 tidak ditemukan di lokasi yang ditentukan.
